@@ -1,61 +1,79 @@
 # Product Discovery
 
-Status: in progress. Answers below are the owner's initial context (2026-10-03). They become decisions only once recorded in `docs/decisions/`. Follow-up questions live in `01-discovery-followups.md`.
+Status: answers complete (2026-10-11). Two small items are still open (see the end). Owner answers are in `01-discovery-followups.md`; settled rulings are in `docs/decisions/`. Next step: the first-release brief.
 
 ## Origin
 
-Banking statements arrive by email from several banks. The goal is one place that automatically shows a clear view of spending. Statements (as screenshots) go in; the app extracts every transaction into a database that can then be queried and visualized freely. This is a cute, personal-use project.
+Banking statements arrive by email from several banks. The goal is one place that automatically shows a clear view of spending. Statements go in; the app extracts every transaction into a database that can then be queried and visualized freely. This is a personal project, built quick and fail fast, and it is a learning opportunity for the owner.
 
 ## Product
 
-- **Who is the primary user?**
-  The owner, as the sole user for now.
-- **What financial-organizing problem should the first release solve?**
-  Seeing clearly how much money is earned and spent each month, across all banks, in one place.
-- **What is the single most important workflow?**
-  Make statements readable (the only manual step) → upload → transactions are extracted, stored and categorized automatically → view monthly charts.
-- **What should the product explicitly not do?**
-  Open. See follow-ups.
+- **Primary user:** the owner, as the sole user for now. The design should allow other people to sign up later (see `docs/decisions/0006-platform-and-future.md`).
+- **Problem:** seeing clearly how much money is earned and spent each month, across all banks, in one place.
+- **Core workflow:** statement files go in → transactions are extracted, stored and categorized automatically → uncertain items wait for review → monthly charts and summaries.
+- **Never:** connect to bank logins, or hold or move money.
 
 ## Data and Trust
 
-- **Which account types and financial records are in scope?**
-  Banking statements received by email, from multiple banks. Exact account types are open.
-- **How will information enter the product?**
-  File import: screenshots of statements, uploaded through a web page. Making the statements readable should be the *only* manual step; everything after that is automatic.
-  Note: the owner is open to starting from a local folder of screenshots and wrapping it in a website later, as long as the design doesn't lock the project into local-folder-only intake.
-- **What data must be stored, for how long, and where?**
-  Initial idea: a database running on the owner's own computer. Retention is open.
-- **What are the requirements for privacy, security, export, backup, and deletion?**
-  Open.
-- **Are any external services allowed to process user data?**
-  Open. This matters for how screenshots are read (local text recognition vs. a cloud AI service).
+- **Banks (all are bank accounts; there are no credit cards yet):**
 
-## Features
+  | Bank | Role | Statement format | Currency |
+  |---|---|---|---|
+  | CTBC | Main salary account; most LINE Pay spending | Password-protected PDF | TWD |
+  | 台新 | Old salary account; some use | Password-protected PDF | TWD |
+  | 匯豐 | Almost never used | Password-protected PDF | TWD |
+  | 國泰世華 | Main stock account | PDF | TWD |
+  | Bank of America | Barely used; holds subscriptions | .txt | USD |
+  | 中華郵政 | Almost never used | Screenshot | TWD |
 
-- **First release**
-  - Tag each transaction with a spending category.
-  - Bar chart of income and spending per month.
-  - Category checklist that filters the chart interactively.
-  - Keep visualization simple at first.
-- **Subscriptions (added 2026-10-11; release timing open)**
-  - Automatically detect recurring payments (subscriptions) from the transactions.
-  - Summarize them in one place. What the summary shows is open; see follow-ups section 7.
-- **Future (to be discussed)**
-  - Budgets.
-  - Packaging as a deployable website.
+- **Intake order:** password-protected PDF → PDF → screenshot. The .txt format is not placed in the order yet. Intake loads everything it is given; there is no date limit on import.
+- **Reading:** an online AI service may read statements during development. Every input is tracked, and a file that was already read is never read again.
+- **PDF passwords:** stored in the macOS Keychain.
+- **Uncertain numbers:** they go to a separate review table with the same layout as the main one. They move into the main table only after the owner accepts them.
+- **Duplicates and transfers:** detecting overlapping statements and transfers between the owner's own accounts is important. These must not count as spending.
+- **Storage:** a database on the owner's Mac, in a data folder that git ignores. Original statement files are kept for now; whether to delete them later is an optimization to revisit. No backups for now.
+- **Currency:** TWD is the main currency. USD is converted to TWD at one fixed rate set in settings.
+
+## Features (first release)
+
+- **Categories:** Food, Groceries, Transport, Rent, Shopping, Subscriptions, Entertainment, Investment, Income, Other.
+  - The AI guesses the category. When the owner corrects one, the app remembers the correction for next time.
+  - Each transaction has a main tag (used by the chart) and a filter tag. The design should allow more tags later.
+  - Money moved to the stock account is tagged Investment. This is a quick fix that may double count.
+- **Chart:** monthly bars, with a toggle between income vs spending side by side and spending stacked by category. A category checklist filters the chart. A "past 30 days" view is a later toggle.
+- **Transactions behind the chart:** shows the top 5 transactions in a category by default; a setting shows the full list.
+- **Subscriptions:**
+  - Anything recurring counts; today that means phone bills and online services.
+  - The summary shows each subscription's name, price and how often it's charged; the totals per month and per year; price increases; new subscriptions; and free trials that turned paid.
+  - Each detected subscription gets a confidence score. Low-confidence ones go to their own review area to be confirmed.
+  - Yearly subscriptions are spotted from their first charge by matching names against a list of common services and checking whether the amount looks like a yearly price.
+  - Foreign-currency charges count as the same subscription; the fixed exchange rate keeps the amounts stable.
+- **Written summaries:** a subscription summary and a written monthly spending summary (for example, "food is up 20% from last month"). These only describe spending; they don't recommend anything (see `docs/decisions/0005-advice-and-boundaries.md`).
+
+## Later
+
+- Budgets.
+- A "past 30 days" chart toggle.
+- More advanced financial advice.
+- Deleting original statement files after extraction.
+- More than two tags per transaction.
+- Signing up other users.
+- A web upload page, and hosting the app properly.
 
 ## Experience and Delivery
 
-- **Which regions, languages, currencies, and platforms are required?**
-  Languages: English; possibly Traditional Mandarin. Platform: web page, with the database on the owner's computer at first and possible deployment later. Regions and currencies are open.
-- **What accessibility requirements apply?**
-  None for now.
-- **What acceptance criteria demonstrate that the first release is useful?**
-  The owner can clearly see how much money they spend in a month.
-- **What constraints apply to budget, schedule, hosting, or maintenance?**
-  Open. The owner would like a learning session on servers and running databases if the local-database approach needs explaining.
+- **Languages:** English, and possibly Traditional Mandarin.
+- **Devices:** mainly this Mac. Briefly showing the real graph on a public website is accepted as a deliberate, short-lived risk.
+- **Accessibility:** no requirements for now.
+- **Learning:** this is a learning project. Pick tools that teach servers and databases step by step, and explain each step.
+- **Budget:** about 100 TWD per month for personal use. Expanding to other users means another conversation about cost.
+- **Acceptance:** the owner can clearly see how much money they spend in a month.
+
+## Open
+
+- Q1 says five banks, but six are listed. Six is assumed.
+- Which bank offers a partial CSV export, and what does "partial" mean?
 
 ## Next Gate
 
-After these questions are answered, write an approved first-release brief and a small technical plan. Do not begin application scaffolding before that review.
+Write the first-release brief and a small technical plan for approval. Do not begin application scaffolding before that review.

@@ -5,15 +5,15 @@ Discovery workspace for a financial and banking organizer. Product requirements 
 ## Start Here
 
 1. Read `CLAUDE_CODE_PROMPT.md` for the working agreement and project boundaries.
-2. Review `docs/plans/00-discovery.md` and resolve the open questions with the project owner.
-3. Record approved decisions in `docs/decisions/` before implementation planning.
+2. Review `docs/plans/00-discovery.md` for the product picture.
+3. Read the approved decisions in `docs/decisions/` before implementation planning.
 
 ## Status
 
 | Stage | Status |
 |---|---|
-| Product discovery | In progress |
-| First-release brief | Not started |
+| Product discovery | Answers complete; decisions 0001–0007 recorded (2026-10-11) |
+| First-release brief | Next |
 | Technical plan | Blocked on approved requirements |
 | Application implementation | Not started |
 
