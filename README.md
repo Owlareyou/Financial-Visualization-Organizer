@@ -14,8 +14,8 @@ Discovery workspace for a financial and banking organizer. Product requirements 
 |---|---|
 | Product discovery | Complete; decisions 0001–0007 recorded (2026-10-11) |
 | First-release brief | Approved (`docs/plans/02-first-release-brief.md`) |
-| Technical plan | Blocked on approved requirements |
-| Application implementation | Not started |
+| Technical plan | Approved (`docs/plans/03-technical-plan.md`) |
+| Application implementation | M0 next; live status in `docs/plans/PROGRESS.md` |
 
 ## Documentation Layout
 

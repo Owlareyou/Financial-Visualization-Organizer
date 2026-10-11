@@ -1,12 +1,12 @@
 # Project Brief - Financial Banking Organizer
 
-> Project stage: discovery, final step (technical plan). This brief is authoritative together with the approved decisions in `docs/decisions/`.
-> Start by reading this file, `docs/plans/00-discovery.md`, and `docs/decisions/`.
+> Project stage: implementation of the first release. This brief is authoritative together with the approved decisions in `docs/decisions/`.
+> Start by reading this file, `docs/plans/PROGRESS.md`, and `docs/plans/03-technical-plan.md`.
 
 ## 0. Working Agreement
 
-- Before implementation, propose a short file-by-file plan and wait for approval.
-- Work on one scoped task at a time; summarize what changed and stop for review.
+- Implementation follows the approved technical plan (`docs/plans/03-technical-plan.md`). Each later milestone's detailed tasks are approved at the checkpoint before it.
+- During an autonomous run, complete tasks one after another and stop only at checkpoints or stop rules (decision 0009). Outside a run, work on one scoped task at a time and stop for review.
 - Ask when requirements are ambiguous. Do not silently choose product or technical behavior.
 - Keep scope to the approved brief. Record proposed additions before building them.
 - This is a learning project: explain new server, database and tooling ideas as they are introduced.
@@ -23,11 +23,11 @@ A personal organizer for the owner's bank statements. Six bank accounts (five in
 
 ## 2. Current Goal
 
-The first-release brief is approved (`docs/plans/02-first-release-brief.md`). Write a technical plan for approval. Do not scaffold the application before that review.
+Build the first release milestone by milestone (M0–M8 in `docs/plans/03-technical-plan.md`), tracking state in `docs/plans/PROGRESS.md`.
 
 ## 3. Decided
 
-See `docs/decisions/` (0001–0007):
+See `docs/decisions/` (0001–0009):
 
 - intake formats and build order
 - online AI reading
@@ -39,15 +39,14 @@ See `docs/decisions/` (0001–0007):
 - platform and future users
 - learning goal and budget
 - charts, currency and subscriptions
+- technology stack (0008)
+- autonomous runs between checkpoints (0009)
 
 ## 4. Not Approved Yet
 
-- Technology stack: language, web framework, database engine, charting library, AI provider and model
-- Hosting, and how the public graph page is served
+- Hosting, and how the public graph page is served (planned for M8)
 - Authentication and multi-user support (deferred; keep the design open to them)
-- Release process, testing approach and repository layout
-
-Do not add dependencies until the technical plan is approved.
+- Any Python dependency not listed in decision 0008
 
 ## 5. Discovery Exit Criteria
 
@@ -57,6 +56,6 @@ Do not add dependencies until the technical plan is approved.
 | 2 | First-release scope and explicit non-goals | Approved (`02-first-release-brief.md`) |
 | 3 | Data sources and treatment of sensitive information | Approved (0001, 0004, 0005) |
 | 4 | Platform and measurable acceptance criteria | Approved (0006; brief section 6) |
-| 5 | Technical direction and a small, reviewable implementation plan | Not started |
+| 5 | Technical direction and a small, reviewable implementation plan | Approved (0008, 0009, `03-technical-plan.md`) |
 
 Record durable product or technical rulings in `docs/decisions/`. Keep research findings and sources in `docs/research/`.
