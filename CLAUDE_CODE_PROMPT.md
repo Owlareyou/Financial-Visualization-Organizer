@@ -1,6 +1,6 @@
 # Project Brief - Financial Banking Organizer
 
-> Project stage: discovery, final step (first-release brief). This brief is authoritative together with the approved decisions in `docs/decisions/`.
+> Project stage: discovery, final step (technical plan). This brief is authoritative together with the approved decisions in `docs/decisions/`.
 > Start by reading this file, `docs/plans/00-discovery.md`, and `docs/decisions/`.
 
 ## 0. Working Agreement
@@ -23,7 +23,7 @@ A personal organizer for the owner's bank statements. Six bank accounts (five in
 
 ## 2. Current Goal
 
-Write the first-release brief (scope, non-goals and measurable acceptance criteria) and a small technical plan for approval. Do not scaffold the application before that review.
+The first-release brief is approved (`docs/plans/02-first-release-brief.md`). Write a technical plan for approval. Do not scaffold the application before that review.
 
 ## 3. Decided
 
@@ -54,9 +54,9 @@ Do not add dependencies until the technical plan is approved.
 | # | Criterion | Status |
 |---|---|---|
 | 1 | Target user and primary workflow | Approved (`00-discovery.md`) |
-| 2 | First-release scope and explicit non-goals | Pending: first-release brief |
+| 2 | First-release scope and explicit non-goals | Approved (`02-first-release-brief.md`) |
 | 3 | Data sources and treatment of sensitive information | Approved (0001, 0004, 0005) |
-| 4 | Platform and measurable acceptance criteria | Platform approved (0006); acceptance criteria pending in the brief |
+| 4 | Platform and measurable acceptance criteria | Approved (0006; brief section 6) |
 | 5 | Technical direction and a small, reviewable implementation plan | Not started |
 
 Record durable product or technical rulings in `docs/decisions/`. Keep research findings and sources in `docs/research/`.

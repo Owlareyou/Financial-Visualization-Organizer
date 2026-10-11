@@ -27,4 +27,9 @@ Six bank accounts send statements in four formats: password-protected PDF (CTBC,
 
 - Statement data leaves the Mac whenever the AI service is used. This is accepted for development (see 0005).
 - Each bank's layout needs its own parser or prompt. Banks are added one at a time.
-- Open: which bank offers a partial CSV export, and whether it's worth supporting.
+- 國泰世華's partial CSV export is not used in the first release; its PDF is used instead.
+
+## Amendment (2026-10-11, brief review)
+
+- **Build order:** password-protected PDF → PDF → Bank of America .txt → screenshot.
+- **Import runs on request:** one import function, called by a command now and by a button later. Watching the folder automatically is deferred.

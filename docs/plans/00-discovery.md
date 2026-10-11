@@ -1,6 +1,6 @@
 # Product Discovery
 
-Status: answers complete (2026-10-11). Two small items are still open (see the end). Owner answers are in `01-discovery-followups.md`; settled rulings are in `docs/decisions/`. Next step: the first-release brief.
+Status: complete (2026-10-11). Owner answers are in `01-discovery-followups.md`; settled rulings are in `docs/decisions/`. Next step: the first-release brief.
 
 ## Origin
 
@@ -26,7 +26,7 @@ Banking statements arrive by email from several banks. The goal is one place tha
   | Bank of America | Barely used; holds subscriptions | .txt | USD |
   | 中華郵政 | Almost never used | Screenshot | TWD |
 
-- **Intake order:** password-protected PDF → PDF → screenshot. The .txt format is not placed in the order yet. Intake loads everything it is given; there is no date limit on import.
+- **Intake order:** password-protected PDF → PDF → .txt → screenshot. Import runs on request (a command now, a button later), and it loads everything it is given, with no date limit.
 - **Reading:** an online AI service may read statements during development. Every input is tracked, and a file that was already read is never read again.
 - **PDF passwords:** stored in the macOS Keychain.
 - **Uncertain numbers:** they go to a separate review table with the same layout as the main one. They move into the main table only after the owner accepts them.
@@ -69,11 +69,11 @@ Banking statements arrive by email from several banks. The goal is one place tha
 - **Budget:** about 100 TWD per month for personal use. Expanding to other users means another conversation about cost.
 - **Acceptance:** the owner can clearly see how much money they spend in a month.
 
-## Open
+## Resolved
 
-- Q1 says five banks, but six are listed. Six is assumed.
-- Which bank offers a partial CSV export, and what does "partial" mean?
+- There are six banks.
+- 國泰世華 offers a partial CSV export. It isn't used in the first release; the PDF is used instead.
 
 ## Next Gate
 
-Write the first-release brief and a small technical plan for approval. Do not begin application scaffolding before that review.
+The first-release brief is approved (`02-first-release-brief.md`). Next is the technical plan. Do not begin application scaffolding before that plan is approved.

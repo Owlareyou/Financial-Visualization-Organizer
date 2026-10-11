@@ -179,8 +179,8 @@ Asked after reviewing the answers above. Numbers in brackets point to the origin
 7. **Financial advice** [Q22, Q29]: stay within the existing policy for now. Note that more advanced advice may be added as a feature later. The app never holds or moves money.
 8. **Exchange rate** [Q4, Q27]: one fixed USD→TWD rate in settings covers both Bank of America totals and foreign-currency subscriptions. This is a deliberate rough fix.
 
-### Still open
+### Resolved in the brief review
 
-- Q1 said five banks, but Q3 and clarification 1 list six. Six is assumed.
-- Q1 and Q2 mention a bank with partial CSV export, but no bank is listed with CSV above. Which bank offers it, and what does "partial" cover?
+- There are six banks.
+- 國泰世華 is the bank with the partial CSV export.
 
